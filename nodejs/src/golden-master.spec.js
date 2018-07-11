@@ -1,4 +1,4 @@
-const Should = require('should');
+const should = require('should/as-function');
 const run = require('./golden-master/run');
 const seeds = require('./golden-master/random-seeds');
 const path = require('path');
@@ -11,7 +11,7 @@ const example = (seed) => {
     const buffer = fs.readFileSync(fileName(seed));
     const expected = buffer.toString();
     const actual = run(seed);
-    (actual).should.equal(expected);
+    should(actual).equal(expected);
   });
 };
 
