@@ -1,0 +1,5 @@
+#!/usr/bin/env ruby
+
+srand(Integer(ARGV[0]))
+load(File.join(File.dirname(__FILE__), 'trivia'))
+
