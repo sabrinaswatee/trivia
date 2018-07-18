@@ -1,3 +1,4 @@
+require 'open3'
 require 'rspec/core/rake_task'
 RSpec::Core::RakeTask.new(:spec)
 
@@ -8,3 +9,13 @@ Rake::TestTask.new("minitest") do |t|
   t.test_files = FileList['test/*_test.rb']
 end
 
+desc "generate golden master"
+task "generate-golden-master" do
+  mkdir_p("spec/golden_master")
+  (1..10).each do |seed|
+    stdout, stderr, status = Open3.capture3("bin/run #{seed}")
+    File.open("spec/golden_master/output-#{seed}.txt", "w") do |f|
+      f.write(stdout)
+    end
+  end
+end
