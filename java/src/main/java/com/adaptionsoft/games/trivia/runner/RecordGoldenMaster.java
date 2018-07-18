@@ -20,8 +20,7 @@ public class RecordGoldenMaster {
 		} finally {
 			System.setOut(orgStream);
 		}
-}
-
+	}
 
 	public static void main(String[] args) {
 		IntStream.range(0, 10).forEach(RecordGoldenMaster::doSomething);
