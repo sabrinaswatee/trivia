@@ -1,5 +1,11 @@
 # Golden Master
 
+## Compile and run tests
+
+```bash
+mvn clean test
+```
+
 ## Generate reference files
 
 Create the target folder
