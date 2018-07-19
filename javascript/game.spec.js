@@ -152,3 +152,37 @@ describe("Capture should match the golden master", function() {
     expect(result).toBe(true);
   });
 });
+
+describe("Test DidPlayerWin Function", function() {
+  it ("Should return true if not 6", function() {
+    var game = new Game();
+    expect(game.didPlayerWin(4)).toBe(true);
+  });
+
+  it ("Should return false if 6", function() {
+    var game = new Game();
+    expect(game.didPlayerWin(6)).toBe(false);
+  });
+});
+
+describe("Test CurrentCategory Function", function() {
+  it ("Should return pop if 4", function() {
+    var game = new Game();
+    expect(game.currentCategory(4)).toBe("Pop");
+  });
+
+  it ("Should return science if 5", function() {
+    var game = new Game();
+    expect(game.currentCategory(5)).toBe("Science");
+  });
+
+  it ("Should return sports if 6", function() {
+    var game = new Game();
+    expect(game.currentCategory(6)).toBe("Sports");
+  });
+
+  it ("Should return rock if 7", function() {
+    var game = new Game();
+    expect(game.currentCategory(7)).toBe("Rock");
+  });
+});
