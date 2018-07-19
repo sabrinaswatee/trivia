@@ -1,6 +1,21 @@
 exports = typeof window !== "undefined" && window !== null ? window : global;
 
+var capture = [];
+// console.oldLog = console.log;
+// console.log = function(value)
+// {
+//     console.oldLog(value);
+//     capture += value;
+// };
+
 exports.Game = function() {
+  console.oldLog = console.log;
+  console.log = function(value)
+  {
+      console.oldLog(value);
+      capture.push(value);
+  };
+console.log("hi");
   var players          = new Array();
   var places           = new Array(6);
   var purses           = new Array(6);
@@ -178,8 +193,16 @@ game.add('Chet');
 game.add('Pat');
 game.add('Sue');
 
-do{
+let seed = 0;
+Math.random = () => {
+  seed += 0.001;
+  if (seed >= 1) {
+    seed = 0;
+  }
+  return seed;
+}
 
+do{
   game.roll(Math.floor(Math.random()*6) + 1);
 
   if(Math.floor(Math.random()*10) == 7){
@@ -187,5 +210,131 @@ do{
   }else{
     notAWinner = game.wasCorrectlyAnswered();
   }
+} while(notAWinner);
 
-}while(notAWinner);
+var goldenMaster = `hi
+Chet was added
+They are player number 1
+Pat was added
+They are player number 2
+Sue was added
+They are player number 3
+Chet is the current player
+They have rolled a 1
+Chet's new location is 1
+The category is Science
+Science Question 0
+Answer was correct!!!!
+Chet now has 1 Gold Coins.
+Pat is the current player
+They have rolled a 1
+Pat's new location is 1
+The category is Science
+Science Question 1
+Answer was correct!!!!
+Pat now has 1 Gold Coins.
+Sue is the current player
+They have rolled a 1
+Sue's new location is 1
+The category is Science
+Science Question 2
+Answer was correct!!!!
+Sue now has 1 Gold Coins.
+Chet is the current player
+They have rolled a 1
+Chet's new location is 2
+The category is Sports
+Sports Question 0
+Answer was correct!!!!
+Chet now has 2 Gold Coins.
+Pat is the current player
+They have rolled a 1
+Pat's new location is 2
+The category is Sports
+Sports Question 1
+Answer was correct!!!!
+Pat now has 2 Gold Coins.
+Sue is the current player
+They have rolled a 1
+Sue's new location is 2
+The category is Sports
+Sports Question 2
+Answer was correct!!!!
+Sue now has 2 Gold Coins.
+Chet is the current player
+They have rolled a 1
+Chet's new location is 3
+The category is Rock
+Rock Question 0
+Answer was correct!!!!
+Chet now has 3 Gold Coins.
+Pat is the current player
+They have rolled a 1
+Pat's new location is 3
+The category is Rock
+Rock Question 1
+Answer was correct!!!!
+Pat now has 3 Gold Coins.
+Sue is the current player
+They have rolled a 1
+Sue's new location is 3
+The category is Rock
+Rock Question 2
+Answer was correct!!!!
+Sue now has 3 Gold Coins.
+Chet is the current player
+They have rolled a 1
+Chet's new location is 4
+The category is Pop
+Pop Question 0
+Answer was correct!!!!
+Chet now has 4 Gold Coins.
+Pat is the current player
+They have rolled a 1
+Pat's new location is 4
+The category is Pop
+Pop Question 1
+Answer was correct!!!!
+Pat now has 4 Gold Coins.
+Sue is the current player
+They have rolled a 1
+Sue's new location is 4
+The category is Pop
+Pop Question 2
+Answer was correct!!!!
+Sue now has 4 Gold Coins.
+Chet is the current player
+They have rolled a 1
+Chet's new location is 5
+The category is Science
+Science Question 3
+Answer was correct!!!!
+Chet now has 5 Gold Coins.
+Pat is the current player
+They have rolled a 1
+Pat's new location is 5
+The category is Science
+Science Question 4
+Answer was correct!!!!
+Pat now has 5 Gold Coins.
+Sue is the current player
+They have rolled a 1
+Sue's new location is 5
+The category is Science
+Science Question 5
+Answer was correct!!!!
+Sue now has 5 Gold Coins.
+Chet is the current player
+They have rolled a 1
+Chet's new location is 6
+The category is Sports
+Sports Question 3
+Answer was correct!!!!
+Chet now has 6 Gold Coins.`.split('\n');
+console.oldLog(goldenMaster.length);
+console.oldLog(capture.length);
+if (capture.length == goldenMaster.length) {
+  console.oldLog("GM Test Passed");
+} else {
+  console.oldLog("GM Test Failed");
+}
