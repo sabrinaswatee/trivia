@@ -186,3 +186,35 @@ describe("Test CurrentCategory Function", function() {
     expect(game.currentCategory(7)).toBe("Rock");
   });
 });
+
+describe("Adding more than 6 players", function() {
+  it("Should be able to add more than 6 players without error", function() {
+    var game = new Game();
+    game.add("Player1");
+    game.add("Player2");
+    game.add("Player3");
+    game.add("Player4");
+    game.add("Player5");
+    game.add("Player6");
+    game.add("Player7");
+    expect(game.noOfPlayers(), 7);
+  });
+
+  it("Should be able to play game with more than 6 players", function() {
+    var game = new Game();
+    game.add("Player1");
+    game.add("Player2");
+    game.add("Player3");
+    game.add("Player4");
+    game.add("Player5");
+    game.add("Player6");
+    game.add("Player7");
+    game.add("Player8");
+    
+    for(let i = 0; i < 8; i++) {
+      expect(game.getCurrentPlayer()).toBe(i);
+      game.roll(1);
+      game.wasCorrectlyAnswered();
+    }
+  });
+});

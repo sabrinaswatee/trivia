@@ -14,6 +14,14 @@ exports.Game = function() {
   var currentPlayer    = 0;
   var isGettingOutOfPenaltyBox = false;
 
+  this.noOfPlayers = function() {
+    return players.length;
+  }
+
+  this.getCurrentPlayer = function() {
+    return currentPlayer;
+  }
+  
   this.didPlayerWin = function(player) {
     return !(player == 6)
   };
@@ -170,4 +178,4 @@ do {
   } else {
     notAWinner = game.wasCorrectlyAnswered();
   }
-} while(notAWinner);
+} while (notAWinner);
